@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "869944285244",
+    "project_id": "myapp-7ab0b",
+    "storage_bucket": "myapp-7ab0b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869944285244:android:c818d33ce4d5d33db3cb39",
+        "android_client_info": {
+          "package_name": "com.example.dansho_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkPBJX9RdPi5C0koSs2xO6MWCvduQFsho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
