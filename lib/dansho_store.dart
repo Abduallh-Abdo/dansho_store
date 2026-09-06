@@ -1,3 +1,4 @@
+import 'package:dansho_store/core/app/env.variables.dart';
 import 'package:flutter/material.dart';
 
 class DanshoStore extends StatelessWidget {
@@ -7,7 +8,7 @@ class DanshoStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: EnvVariable.instance.isDev,
       title: 'Dansho Store',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: Scaffold(
