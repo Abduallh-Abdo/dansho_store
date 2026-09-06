@@ -29,6 +29,7 @@ flutter:
   assets:
     - .env.dev
     - .env.prod
+    - assets/images/core/
 
   # fonts:
   #   - family: Trajan Pro
@@ -36,3 +37,10 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+  #assets geneator
+flutter_assets:
+  assets_path: assets/images/core/
+  output_path: lib/core/styles/images/
+  filename: assets_manager.dart
+  field_prefix: null
