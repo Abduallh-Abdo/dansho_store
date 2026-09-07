@@ -2,6 +2,7 @@ import 'package:dansho_store/core/app/connectivity_controller.dart';
 import 'package:dansho_store/core/app/env.variables.dart';
 import 'package:dansho_store/core/common/screens/no_network_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DanshoStore extends StatelessWidget {
   const DanshoStore({super.key});
@@ -13,28 +14,32 @@ class DanshoStore extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isOnline,
       builder: (_, value, _) {
         if (value) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: EnvVariable.instance.isDev,
-            title: 'Dansho Store',
-            theme: ThemeData(
-              colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-            ),
-            builder: (context, widget) {
-              return Scaffold(
-                body: Builder(
-                  builder: (context) {
-                    ConnectivityController.instance.init();
-                    return widget!;
-                  },
-                ),
-              );
-            },
-            home: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                title: const Text('Dansho Store'),
+          return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+            child: MaterialApp(
+              debugShowCheckedModeBanner: EnvVariable.instance.isDev,
+              title: 'Dansho Store',
+              theme: ThemeData(
+                colorScheme: .fromSeed(seedColor: Colors.deepPurple),
               ),
-              body: const Center(child: Text('Hello World')),
+              builder: (context, widget) {
+                return Scaffold(
+                  body: Builder(
+                    builder: (context) {
+                      ConnectivityController.instance.init();
+                      return widget!;
+                    },
+                  ),
+                );
+              },
+              home: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                  title: const Text('Dansho Store'),
+                ),
+                body: const Center(child: Text('Hello World')),
+              ),
             ),
           );
         } else {
