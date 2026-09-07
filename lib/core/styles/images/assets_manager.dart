@@ -14,8 +14,12 @@ class Assets {
   /// assets/images/core/page_under_build.jpg
   static const String imagesCorePageUnderBuild = "assets/images/core/page_under_build.jpg";
 
-  /// Assets for imagesCoreSplash
-  /// assets/images/core/splash.jpg
-  static const String imagesCoreSplash = "assets/images/core/splash.jpg";
+  /// Assets for imagesCoreSplashAndroid12
+  /// assets/images/core/splash_android_12.png
+  static const String imagesCoreSplashAndroid12 = "assets/images/core/splash_android_12.png";
+
+  /// Assets for imagesCoreSplashIosAndroid11
+  /// assets/images/core/splash_ios_android_11.png
+  static const String imagesCoreSplashIosAndroid11 = "assets/images/core/splash_ios_android_11.png";
 }
 
