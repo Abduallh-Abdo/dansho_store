@@ -14,6 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^6.0.1
+  flutter_native_splash: ^2.4.8
   flutter_screenutil: ^5.9.3
 
 dev_dependencies:
@@ -30,7 +31,6 @@ flutter:
     - .env.dev
     - .env.prod
     - assets/images/core/
-
   # fonts:
   #   - family: Trajan Pro
   #     fonts:
@@ -44,7 +44,6 @@ flutter_assets:
   output_path: lib/core/styles/images/
   filename: assets_manager.dart
   field_prefix: null
-
   #flutter app icon
 flutter_launcher_icons:
   android: true
