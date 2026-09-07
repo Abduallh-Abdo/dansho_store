@@ -1,6 +1,7 @@
 import 'package:dansho_store/core/app/connectivity_controller.dart';
 import 'package:dansho_store/core/app/env.variables.dart';
 import 'package:dansho_store/core/common/screens/no_network_screen.dart';
+import 'package:dansho_store/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,13 +34,7 @@ class DanshoStore extends StatelessWidget {
                   ),
                 );
               },
-              home: Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                  title: const Text('Dansho Store'),
-                ),
-                body: const Center(child: Text('Hello World')),
-              ),
+              onGenerateRoute: AppRoutes.onGenerateRoute,
             ),
           );
         } else {
