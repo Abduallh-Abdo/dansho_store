@@ -57,6 +57,7 @@ flutter_assets:
   output_path: lib/core/styles/images/
   filename: assets_manager.dart
   field_prefix: null
+  
   #flutter app icon
 flutter_launcher_icons:
   android: true
