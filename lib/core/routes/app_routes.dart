@@ -1,5 +1,7 @@
 import 'package:dansho_store/core/routes/base_routes.dart';
 import 'package:dansho_store/core/routes/under_build_screen.dart';
+import 'package:dansho_store/generated/l10n.dart';
+import 'package:dansho_store/test_page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -10,7 +12,7 @@ class AppRoutes {
   static Route<void> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return BaseRoute(page: const Column());
+        return BaseRoute(page: const TestPage());
 
       default:
         return BaseRoute(page: const PageUnderBuildScreen());
