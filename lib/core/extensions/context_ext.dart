@@ -1,5 +1,5 @@
-import 'package:dansho_store/core/themes/color_extension.dart';
 import 'package:dansho_store/core/themes/assets_extension.dart';
+import 'package:dansho_store/core/themes/color_extension.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExt on BuildContext {
@@ -8,6 +8,9 @@ extension ContextExt on BuildContext {
 
   //? images
   AssetsExtension get assets => Theme.of(this).extension<AssetsExtension>()!;
+
+  //? style
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
 
   //? Navigation
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
