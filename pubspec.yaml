@@ -32,7 +32,11 @@ flutter:
   assets:
     - .env.dev
     - .env.prod
+    - assets/icons/
     - assets/images/core/
+    - assets/images/admin/
+    - assets/images/customer/
+    - assets/svg/
   fonts:
     #Arabic
     - family: Cairo
@@ -52,12 +56,19 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
+
   #assets geneator
 flutter_assets:
-  assets_path: assets/images/core/
+  assets_path:
+    - assets/images/core/
+    - assets/images/admin/
+    - assets/images/customer/
+    - assets/svg/
+    - assets/icons/
   output_path: lib/core/styles/images/
   filename: assets_manager.dart
-  field_prefix: null
+  field_prefix:
+
   #flutter app icon
 flutter_launcher_icons:
   android: true

@@ -12,7 +12,7 @@ class AppRoutes {
   static Route<void> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.initialRoute:
-        return BaseRoute(page: const TestPage());
+        return BaseRoute(page: const Row());
 
       default:
         return BaseRoute(page: const PageUnderBuildScreen());
