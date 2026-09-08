@@ -8,16 +8,17 @@ environment:
   sdk: ^3.13.2
 
 dependencies:
+  animate_do: ^5.1.0
   connectivity_plus: ^7.3.1
   cupertino_icons: ^1.0.8
   firebase_core: ^3.12.0
   flutter:
     sdk: flutter
   flutter_dotenv: ^6.0.1
-  flutter_native_splash: ^2.4.8
-  flutter_screenutil: ^5.9.3
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.4.8
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.4
@@ -56,7 +57,6 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
-
   #assets geneator
 flutter_assets:
   assets_path:
@@ -69,7 +69,7 @@ flutter_assets:
   filename: assets_manager.dart
   field_prefix:
 
-  #flutter app icon
+    #flutter app icon
 flutter_launcher_icons:
   android: true
   ios: true
