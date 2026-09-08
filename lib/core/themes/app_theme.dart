@@ -1,7 +1,7 @@
 import 'package:dansho_store/core/styles/colors/colors_dark.dart';
 import 'package:dansho_store/core/styles/colors/colors_light.dart';
 import 'package:dansho_store/core/themes/color_extension.dart';
-import 'package:dansho_store/core/themes/image_extension.dart';
+import 'package:dansho_store/core/themes/assets_extension.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeDark() {
@@ -9,7 +9,7 @@ ThemeData themeDark() {
     scaffoldBackgroundColor: ColorsDark.mainColor,
     extensions: const <ThemeExtension<dynamic>>[
       ColorExtension.dark,
-      ImageExtension.dark,
+      AssetsExtension.dark,
     ],
     useMaterial3: true,
   );
@@ -20,7 +20,7 @@ ThemeData themeLight() {
     scaffoldBackgroundColor: ColorsLight.mainColor,
     extensions: const <ThemeExtension<dynamic>>[
       ColorExtension.light,
-      ImageExtension.light,
+      AssetsExtension.light,
     ],
 
     useMaterial3: true,
