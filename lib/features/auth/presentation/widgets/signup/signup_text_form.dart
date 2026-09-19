@@ -6,20 +6,37 @@ import 'package:dansho_store/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginTextForm extends StatefulWidget {
+class SignupTextForm extends StatefulWidget {
   const new({super.key});
 
   @override
-  State<LoginTextForm> createState() => _LoginTextFormState();
+  State<SignupTextForm> createState() => _SignupTextFormState();
 }
 
-class _LoginTextFormState extends State<LoginTextForm> {
+class _SignupTextFormState extends State<SignupTextForm> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
+          // Full name
+          CustomFadeInRight(
+            duration: 400,
+            child: CustomTextField(
+              controller: TextEditingController(),
+              hintText: S.of(context).full_name,
+              keyboardType: TextInputType.name,
+              validator: (value) {
+                if (value!.isEmpty || value.length < 3) {
+                  return S.of(context).valid_name;
+                }
+                return null;
+              },
+            ),
+          ),
+          SizedBox(height: 25.h),
+          // Your email
           CustomFadeInRight(
             duration: 400,
             child: CustomTextField(
@@ -35,6 +52,7 @@ class _LoginTextFormState extends State<LoginTextForm> {
             ),
           ),
           SizedBox(height: 25.h),
+          // Password
           CustomFadeInRight(
             duration: 400,
             child: CustomTextField(

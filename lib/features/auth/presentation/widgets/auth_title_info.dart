@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthTitleInfo extends StatelessWidget {
-  const new({super.key});
+  const AuthTitleInfo({required this.title, required this.subtitle, super.key});
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class AuthTitleInfo extends StatelessWidget {
       child: Column(
         children: [
           TextApp(
-            text: S.of(context).login,
+            text: title,
             theme: context.textStyle.copyWith(
               fontSize: 24.sp,
               fontWeight: FontWeightHelper.bold,
@@ -24,7 +26,7 @@ class AuthTitleInfo extends StatelessWidget {
             ),
           ),
           TextApp(
-            text: S.of(context).welcome,
+            text: subtitle,
             theme: context.textStyle.copyWith(
               fontSize: 16.sp,
               fontWeight: FontWeightHelper.medium,

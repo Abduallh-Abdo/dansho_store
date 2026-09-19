@@ -40,7 +40,7 @@ class DanshoStore extends StatelessWidget {
                   );
                 },
                 onGenerateRoute: AppRoutes.onGenerateRoute,
-                initialRoute: Routes.loginScreen,
+                initialRoute: Routes.login,
               );
             } else {
               return MaterialApp(
