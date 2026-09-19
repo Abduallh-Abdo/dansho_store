@@ -1,3 +1,4 @@
+import 'package:dansho_store/core/app/connectivity_controller.dart';
 import 'package:dansho_store/core/app/env.variables.dart';
 import 'package:dansho_store/dansho_store.dart';
 import 'package:dansho_store/firebase_options.dart';
@@ -9,6 +10,6 @@ void main() async {
   await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+await ConnectivityController.instance.init();
   runApp(const DanshoStore());
 }
