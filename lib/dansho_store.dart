@@ -11,52 +11,46 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DanshoStore extends StatelessWidget {
   const DanshoStore({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: ConnectivityController.instance.isOnline,
-      builder: (_, value, _) {
-        if (value) {
-          return ScreenUtilInit(
-            designSize: const Size(375, 812),
-            minTextAdapt: true,
-            child: MaterialApp(
-              debugShowCheckedModeBanner: EnvVariable.instance.isDev,
-              title: 'Dansho Store',
-              theme: themeDark(),
-              locale: const Locale('en'),
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              builder: (context, widget) {
-                return GestureDetector(
-                  //! for dismiss keyboard
-                  onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                  child: Scaffold(
-                    body: Builder(
-                      builder: (context) {
-                        ConnectivityController.instance.init();
-                        return widget!;
-                      },
-                    ),
-                  ),
-                );
-              },
-              onGenerateRoute: AppRoutes.onGenerateRoute,
-            ),
-          );
-        } else {
-          return MaterialApp(
-            title: 'No Network',
-            debugShowCheckedModeBanner: EnvVariable.instance.isDev,
-            home: const NoNetworkScreen(),
-          );
-        }
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      builder: (context, child) {
+        return ValueListenableBuilder<bool>(
+          valueListenable: ConnectivityController.instance.isOnline,
+          builder: (context, isOnline, _) {
+            if (isOnline) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: EnvVariable.instance.isDev,
+                title: 'Dansho Store',
+                theme: themeDark(),
+                locale: const Locale('en'),
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                builder: (context, widget) {
+                  return GestureDetector(
+                    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                    child: Scaffold(body: widget!),
+                  );
+                },
+                onGenerateRoute: AppRoutes.onGenerateRoute,
+                initialRoute: Routes.loginScreen,
+              );
+            } else {
+              return MaterialApp(
+                title: 'No Network',
+                debugShowCheckedModeBanner: EnvVariable.instance.isDev,
+                home: const NoNetworkScreen(),
+              );
+            }
+          },
+        );
       },
     );
   }
