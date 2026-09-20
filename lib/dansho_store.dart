@@ -29,8 +29,9 @@ class DanshoStore extends StatelessWidget {
               return BlocProvider(
                 create: (context) => sl<AppCubit>()
                   ..changeThemeMode(
-                    sharedPref: SharedPref().getBoolean(PrefsKeys.themeMode),
-                  ),
+                    sharedPref: SharedPref().getBoolean(PrefKeys.themeMode),
+                  )
+                  ..getSavedLang(),
                 child: BlocBuilder<AppCubit, AppState>(
                   buildWhen: (previous, current) => previous != current,
                   builder: (context, state) {
@@ -39,7 +40,7 @@ class DanshoStore extends StatelessWidget {
                       debugShowCheckedModeBanner: EnvVariable.instance.isDev,
                       title: 'Dansho Store',
                       theme: cubit.isDark ? themeLight() : themeDark(),
-                      locale: const Locale('en'),
+                      locale: Locale(cubit.currentLang),
                       localizationsDelegates: const [
                         S.delegate,
                         GlobalMaterialLocalizations.delegate,
