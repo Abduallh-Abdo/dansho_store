@@ -1,10 +1,15 @@
 import 'package:dansho_store/core/app/connectivity_controller.dart';
+import 'package:dansho_store/core/app/cubit/app_cubit.dart';
 import 'package:dansho_store/core/app/env.variables.dart';
 import 'package:dansho_store/core/common/screens/no_network_screen.dart';
+import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/routes/app_routes.dart';
+import 'package:dansho_store/core/service/shared_prefs/prefs_keys.dart';
+import 'package:dansho_store/core/service/shared_prefs/shared_pref.dart';
 import 'package:dansho_store/core/themes/app_theme.dart';
 import 'package:dansho_store/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,26 +26,39 @@ class DanshoStore extends StatelessWidget {
           valueListenable: ConnectivityController.instance.isOnline,
           builder: (context, isOnline, _) {
             if (isOnline) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: EnvVariable.instance.isDev,
-                title: 'Dansho Store',
-                theme: themeDark(),
-                locale: const Locale('en'),
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: S.delegate.supportedLocales,
-                builder: (context, widget) {
-                  return GestureDetector(
-                    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                    child: Scaffold(body: widget!),
-                  );
-                },
-                onGenerateRoute: AppRoutes.onGenerateRoute,
-                initialRoute: Routes.login,
+              return BlocProvider(
+                create: (context) => sl<AppCubit>()
+                  ..changeThemeMode(
+                    sharedPref: SharedPref().getBoolean(PrefsKeys.themeMode),
+                  ),
+                child: BlocBuilder<AppCubit, AppState>(
+                  buildWhen: (previous, current) => previous != current,
+                  builder: (context, state) {
+                    final cubit = context.read<AppCubit>();
+                    return MaterialApp(
+                      debugShowCheckedModeBanner: EnvVariable.instance.isDev,
+                      title: 'Dansho Store',
+                      theme: cubit.isDark ? themeLight() : themeDark(),
+                      locale: const Locale('en'),
+                      localizationsDelegates: const [
+                        S.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: S.delegate.supportedLocales,
+                      builder: (context, widget) {
+                        return GestureDetector(
+                          onTap: () =>
+                              FocusManager.instance.primaryFocus?.unfocus(),
+                          child: Scaffold(body: widget!),
+                        );
+                      },
+                      onGenerateRoute: AppRoutes.onGenerateRoute,
+                      initialRoute: Routes.login,
+                    );
+                  },
+                ),
               );
             } else {
               return MaterialApp(
