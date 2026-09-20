@@ -1,1 +1,3 @@
-class PrefsKeys {} 
+class PrefsKeys {
+  static const String themeMode = 'mode';
+} 
