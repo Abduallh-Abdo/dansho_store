@@ -46,8 +46,8 @@ class SignupBody extends StatelessWidget {
             SizedBox(height: 25.h),
 
             // Go to Login Screen Text
-            CustomFadeInDown(
-              duration: 600,
+            CustomFadeInRight(
+              duration: 400,
               child: TextButton(
                 onPressed: () {
                   context.pushNamed(Routes.login);

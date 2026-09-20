@@ -12,7 +12,7 @@ class SignupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomFadeInDown(
+    return CustomFadeInRight(
       duration: 500,
       child: CustomLinearButton(
         width: double.infinity,

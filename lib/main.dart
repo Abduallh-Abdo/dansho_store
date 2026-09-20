@@ -1,5 +1,7 @@
 import 'package:dansho_store/core/app/connectivity_controller.dart';
 import 'package:dansho_store/core/app/env.variables.dart';
+import 'package:dansho_store/core/di/get_it.dart';
+import 'package:dansho_store/core/service/shared_prefs/shared_pref.dart';
 import 'package:dansho_store/dansho_store.dart';
 import 'package:dansho_store/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,6 +12,8 @@ void main() async {
   await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-await ConnectivityController.instance.init();
+  await ConnectivityController.instance.init();
+  await SharedPref().instantiatePreferences();
+  await initGetIt();
   runApp(const DanshoStore());
 }
