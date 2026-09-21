@@ -1,8 +1,11 @@
+import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/routes/base_routes.dart';
 import 'package:dansho_store/core/routes/under_build_screen.dart';
+import 'package:dansho_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dansho_store/features/auth/presentation/screens/login_screen.dart';
 import 'package:dansho_store/features/auth/presentation/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -14,7 +17,12 @@ class AppRoutes {
   static Route<void> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.login:
-        return BaseRoute(page: const LoginScreen());
+        return BaseRoute(
+          page: BlocProvider(
+            create: (context) => AuthBloc(authRepo: sl()),
+            child: const LoginScreen(),
+          ),
+        );
       case Routes.signup:
         return BaseRoute(page: const SignupScreen());
 
