@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ShowToast {
   const ShowToast._();
 
-  static void showToastErrorTop({required String message, int? seconds}) =>
+  static void showToastError({required String message, int? seconds}) =>
       Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,
@@ -16,7 +16,7 @@ class ShowToast {
         fontSize: 16.sp,
       );
 
-  static void showToastSuccessTop({required String message, int? seconds}) =>
+  static void showToastSuccess({required String message, int? seconds}) =>
       Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

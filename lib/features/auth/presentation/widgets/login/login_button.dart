@@ -20,9 +20,9 @@ class LoginButton extends StatelessWidget {
       listener: (context, state) {
         state.mapOrNull(
           error: (errMessage) =>
-              ShowToast.showToastErrorTop(message: S.of(context).logged_error),
+              ShowToast.showToastError(message: S.of(context).logged_error),
           success: (userRole) async {
-            ShowToast.showToastSuccessTop(
+            ShowToast.showToastSuccess(
               message: S.of(context).logged_successfully,
             );
             if (userRole.userRole == 'admin') {
@@ -64,7 +64,7 @@ class LoginButton extends StatelessWidget {
                       .formKey
                       .currentState!
                       .validate()) {
-                    context.read<AuthBloc>().add(const LoginEvent());
+                    context.read<AuthBloc>().add(const AuthEvent.login());
                   }
                 },
                 child: TextApp(

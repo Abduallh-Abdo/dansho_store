@@ -35,6 +35,7 @@ class AppRoutes {
               BlocProvider(
                 create: (context) => UploadImageCubit(uploadImageRepo: sl()),
               ),
+              BlocProvider(create: (context) => AuthBloc(authRepo: sl())),
             ],
             child: const SignupScreen(),
           ),

@@ -16,16 +16,16 @@ class UserAvatarImage extends StatelessWidget {
     return BlocConsumer<UploadImageCubit, UploadImageState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: () => ShowToast.showToastSuccessTop(
+          success: () => ShowToast.showToastSuccess(
             message: S.of(context).image_uploaded,
             seconds: 2,
           ),
-          removeImage: (imageUrl) => ShowToast.showToastSuccessTop(
+          removeImage: (imageUrl) => ShowToast.showToastSuccess(
             message: S.of(context).image_removed,
             seconds: 2,
           ),
           error: (errMessage) =>
-              ShowToast.showToastErrorTop(seconds: 2, message: errMessage),
+              ShowToast.showToastError(seconds: 2, message: errMessage),
         );
       },
       builder: (context, state) {
