@@ -60,7 +60,7 @@ class _ApiService implements ApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/auth/profile',
+            '/api/v1/auth/profile',
             queryParameters: queryParameters,
             data: _data,
           )

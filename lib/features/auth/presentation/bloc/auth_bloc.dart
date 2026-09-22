@@ -19,38 +19,53 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginEvent>(_login);
     on<SignupEvent>(_signup);
   }
+
   final AuthRepo _authRepo;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   FutureOr<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
+
     final result = await _authRepo.login(
       body: LoginRequestBody(
         email: emailController.text.trim(),
         password: passwordController.text,
       ),
     );
-    result.when(
+
+    await result.when(
       success: (data) async {
         final token = data.data.login.accessToken;
-        await SharedPref().setString(PrefKeys.accessToken, token!);
+        if (token != null) {
+          await SharedPref().setString(PrefKeys.accessToken, token);
+        }
+
         final user = await _authRepo.userRole(
-          token: data.data.login.accessToken!,
+          token: data.data.login.accessToken ?? '',
         );
+
         await SharedPref().setInt(PrefKeys.userId, user.userId ?? 0);
         await SharedPref().setString(PrefKeys.userRole, user.userRole ?? '');
-        emit(AuthState.success(userRole: user.userRole!));
+
+        if (!emit.isDone) {
+          emit(AuthState.success(userRole: user.userRole ?? ''));
+        }
       },
-      failure: (errorHandler) {
-        emit(AuthState.error(errMessage: errorHandler));
+      failure: (errorHandler) async {
+        if (!emit.isDone) {
+          emit(AuthState.error(errMessage: errorHandler));
+        }
       },
     );
   }
 
   // Signup
   FutureOr<void> _signup(SignupEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+
     final result = await _authRepo.signup(
       body: SignupRequestBody(
         name: nameController.text.trim(),
@@ -59,13 +74,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         avatar: event.imageUrl,
       ),
     );
+
     result.when(
       success: (signupData) {
         add(const AuthEvent.login());
       },
       failure: (errorHandler) {
-        emit(AuthState.error(errMessage: errorHandler));
+        if (!emit.isDone) {
+          emit(AuthState.error(errMessage: errorHandler));
+        }
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    return super.close();
   }
 }
