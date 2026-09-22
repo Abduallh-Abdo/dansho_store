@@ -8,7 +8,7 @@ import 'package:dansho_store/features/auth/data/models/user_role_response.dart';
 import 'package:dio/dio.dart';
 
 class AuthDataSource {
-  new(this._apiService);
+  new({required this._apiService});
 
   final ApiService _apiService;
 

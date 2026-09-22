@@ -7,7 +7,7 @@ class UserRoleResponse {
   @JsonKey(name: 'role')
   final String? userRole;
   @JsonKey(name: 'id')
-  final String? userId;
+  final int? userId;
 
   const UserRoleResponse(this.userRole, this.userId);
 

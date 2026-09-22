@@ -56,7 +56,12 @@ class DanshoStore extends StatelessWidget {
                         );
                       },
                       onGenerateRoute: AppRoutes.onGenerateRoute,
-                      initialRoute: Routes.login,
+                      initialRoute:
+                          SharedPref().getString(PrefKeys.accessToken) != null
+                          ? SharedPref().getString(PrefKeys.userRole) == 'admin'
+                                ? Routes.customer
+                                : Routes.admin
+                          : Routes.login,
                     );
                   },
                 ),
