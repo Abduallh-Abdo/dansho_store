@@ -4,6 +4,7 @@ import 'package:dansho_store/core/service/graphql/dio_factory.dart';
 import 'package:dansho_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:dansho_store/features/auth/data/repos/auth_repo.dart';
 import 'package:dansho_store/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt sl = GetIt.instance;
@@ -15,8 +16,11 @@ Future<void> initGetIt() async {
 
 void _intCore() {
   final dio = DioFactory.getDio();
+  final navigatorKey = GlobalKey<NavigatorState>();
+
   sl.registerFactory(AppCubit.new);
   sl.registerLazySingleton<ApiService>(() => ApiService(dio));
+  sl.registerFactory<GlobalKey<NavigatorState>>(() => navigatorKey);
 }
 
 void _initAuth() {

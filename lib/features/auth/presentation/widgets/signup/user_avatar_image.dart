@@ -1,4 +1,5 @@
 import 'package:dansho_store/core/common/animations/animate_do.dart';
+import 'package:dansho_store/core/utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,12 +8,17 @@ class UserAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomFadeInDown(
-      duration: 500,
-      child: CircleAvatar(
-        radius: 50.r,
-        backgroundImage: const NetworkImage(
-          'https://images.unsplash.com/photo-1789506071206-6a5232f81390?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    return GestureDetector(
+      onTap: () {
+        ImagePickerUtils().pickImage();
+      },
+      child: CustomFadeInDown(
+        duration: 500,
+        child: CircleAvatar(
+          radius: 50.r,
+          backgroundImage: const NetworkImage(
+            'https://images.unsplash.com/photo-1789506071206-6a5232f81390?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          ),
         ),
       ),
     );

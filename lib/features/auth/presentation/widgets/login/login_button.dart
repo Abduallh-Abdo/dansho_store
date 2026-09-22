@@ -19,14 +19,11 @@ class LoginButton extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.mapOrNull(
-          error: (errMessage) => ShowToast.showToastErrorTop(
-            message: S.of(context).logged_error,
-            context: context,
-          ),
+          error: (errMessage) =>
+              ShowToast.showToastErrorTop(message: S.of(context).logged_error),
           success: (userRole) async {
             ShowToast.showToastSuccessTop(
               message: S.of(context).logged_successfully,
-              context: context,
             );
             if (userRole.userRole == 'admin') {
               await context.pushNamedAndRemoveUntil(
