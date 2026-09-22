@@ -1,3 +1,4 @@
+import 'package:dansho_store/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/routes/base_routes.dart';
 import 'package:dansho_store/core/routes/under_build_screen.dart';
@@ -28,7 +29,16 @@ class AppRoutes {
           ),
         );
       case Routes.signup:
-        return BaseRoute(page: const SignupScreen());
+        return BaseRoute(
+          page: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => UploadImageCubit(uploadImageRepo: sl()),
+              ),
+            ],
+            child: const SignupScreen(),
+          ),
+        );
       case Routes.admin:
         return BaseRoute(page: const AdminScreen());
       case Routes.customer:
