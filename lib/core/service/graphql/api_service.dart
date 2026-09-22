@@ -1,3 +1,4 @@
+import 'package:dansho_store/core/app/upload_image/models/upload_image_response.dart';
 import 'package:dansho_store/features/auth/data/models/login_response.dart';
 import 'package:dansho_store/features/auth/data/models/user_role_response.dart';
 import 'package:dio/dio.dart';
@@ -17,4 +18,7 @@ abstract class ApiService {
 
   @GET('api/v1/auth/profile')
   Future<UserRoleResponse> userRole();
+
+  @POST('/api/v1/file/upload')
+  Future<UploadImageResponse> uploadImage(@Body() FormData file);
 }
