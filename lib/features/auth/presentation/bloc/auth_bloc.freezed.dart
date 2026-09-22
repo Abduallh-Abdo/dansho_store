@@ -56,12 +56,13 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( LoginEvent value)?  login,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( LoginEvent value)?  login,TResult Function( SignupEvent value)?  signup,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case LoginEvent() when login != null:
-return login(_that);case _:
+return login(_that);case SignupEvent() when signup != null:
+return signup(_that);case _:
   return orElse();
 
 }
@@ -79,12 +80,13 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( LoginEvent value)  login,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( LoginEvent value)  login,required TResult Function( SignupEvent value)  signup,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case LoginEvent():
-return login(_that);case _:
+return login(_that);case SignupEvent():
+return signup(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -101,12 +103,13 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( LoginEvent value)?  login,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( LoginEvent value)?  login,TResult? Function( SignupEvent value)?  signup,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case LoginEvent() when login != null:
-return login(_that);case _:
+return login(_that);case SignupEvent() when signup != null:
+return signup(_that);case _:
   return null;
 
 }
@@ -123,11 +126,12 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  login,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  login,TResult Function( String imageUrl)?  signup,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case LoginEvent() when login != null:
-return login();case _:
+return login();case SignupEvent() when signup != null:
+return signup(_that.imageUrl);case _:
   return orElse();
 
 }
@@ -145,11 +149,12 @@ return login();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  login,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  login,required TResult Function( String imageUrl)  signup,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case LoginEvent():
-return login();case _:
+return login();case SignupEvent():
+return signup(_that.imageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -166,11 +171,12 @@ return login();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  login,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  login,TResult? Function( String imageUrl)?  signup,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case LoginEvent() when login != null:
-return login();case _:
+return login();case SignupEvent() when signup != null:
+return signup(_that.imageUrl);case _:
   return null;
 
 }
@@ -241,6 +247,74 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class SignupEvent implements AuthEvent {
+  const SignupEvent({required this.imageUrl});
+  
+
+ final  String imageUrl;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignupEventCopyWith<SignupEvent> get copyWith => _$SignupEventCopyWithImpl<SignupEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupEvent&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,imageUrl);
+}
+
+@override
+String toString() {
+    return 'AuthEvent.signup(imageUrl: $imageUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SignupEventCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory $SignupEventCopyWith(SignupEvent value, $Res Function(SignupEvent) _then) = _$SignupEventCopyWithImpl;
+@useResult
+$Res call({
+ String imageUrl
+});
+
+
+
+
+}
+/// @nodoc
+class _$SignupEventCopyWithImpl<$Res>
+    implements $SignupEventCopyWith<$Res> {
+  _$SignupEventCopyWithImpl(this._self, this._then);
+
+  final SignupEvent _self;
+  final $Res Function(SignupEvent) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? imageUrl = null,}) {
+  return _then(SignupEvent(
+imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$AuthState {

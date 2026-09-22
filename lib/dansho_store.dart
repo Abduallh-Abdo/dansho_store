@@ -55,10 +55,11 @@ class DanshoStore extends StatelessWidget {
                           child: Scaffold(body: widget!),
                         );
                       },
+                      navigatorKey: sl<GlobalKey<NavigatorState>>(),
                       onGenerateRoute: AppRoutes.onGenerateRoute,
                       initialRoute:
                           SharedPref().getString(PrefKeys.accessToken) != null
-                          ? SharedPref().getString(PrefKeys.userRole) == 'admin'
+                          ? SharedPref().getString(PrefKeys.userRole) != 'admin'
                                 ? Routes.customer
                                 : Routes.admin
                           : Routes.login,

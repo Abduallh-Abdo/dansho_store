@@ -308,6 +308,16 @@ class S {
   String get lang_code {
     return Intl.message('English', name: 'lang_code', desc: '', args: []);
   }
+
+  /// `An error has occurred, please try again`
+  String get error {
+    return Intl.message(
+      'An error has occurred, please try again',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

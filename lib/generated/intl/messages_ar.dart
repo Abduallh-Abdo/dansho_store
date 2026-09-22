@@ -37,6 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "create_account": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
     "dark_mode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "error": MessageLookupByLibrary.simpleMessage(
+      "حدث خطاء، يرجى المحاولة مرة اخرى",
+    ),
     "full_name": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
     "image_removed": MessageLookupByLibrary.simpleMessage("تم مسح الصورة"),
     "image_uploaded": MessageLookupByLibrary.simpleMessage(

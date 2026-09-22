@@ -4,6 +4,7 @@ import 'package:dansho_store/core/service/graphql/api_result.dart';
 import 'package:dansho_store/core/service/shared_prefs/prefs_keys.dart';
 import 'package:dansho_store/core/service/shared_prefs/shared_pref.dart';
 import 'package:dansho_store/features/auth/data/models/login_request_body.dart';
+import 'package:dansho_store/features/auth/data/models/signup_request_body.dart';
 import 'package:dansho_store/features/auth/data/repos/auth_repo.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,33 +17,81 @@ part 'auth_bloc.freezed.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this._authRepo}) : super(const _Initial()) {
     on<LoginEvent>(_login);
+    on<SignupEvent>(_signup);
   }
+
   final AuthRepo _authRepo;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   FutureOr<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
+
     final result = await _authRepo.login(
       body: LoginRequestBody(
         email: emailController.text.trim(),
         password: passwordController.text,
       ),
     );
-    result.when(
+
+    await result.when(
       success: (data) async {
         final token = data.data.login.accessToken;
-        await SharedPref().setString(PrefKeys.accessToken, token!);
+        if (token != null) {
+          await SharedPref().setString(PrefKeys.accessToken, token);
+        }
+
         final user = await _authRepo.userRole(
-          token: data.data.login.accessToken!,
+          token: data.data.login.accessToken ?? '',
         );
+
         await SharedPref().setInt(PrefKeys.userId, user.userId ?? 0);
         await SharedPref().setString(PrefKeys.userRole, user.userRole ?? '');
-        emit(AuthState.success(userRole: user.userRole!));
+
+        if (!emit.isDone) {
+          emit(AuthState.success(userRole: user.userRole ?? ''));
+        }
       },
-      failure: (errorHandler) {
-        emit(AuthState.error(errMessage: errorHandler));
+      failure: (errorHandler) async {
+        if (!emit.isDone) {
+          emit(AuthState.error(errMessage: errorHandler));
+        }
       },
     );
+  }
+
+  // Signup
+  FutureOr<void> _signup(SignupEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+
+    final result = await _authRepo.signup(
+      body: SignupRequestBody(
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text,
+        avatar: event.imageUrl,
+      ),
+    );
+
+    result.when(
+      success: (signupData) {
+        add(const AuthEvent.login());
+      },
+      failure: (errorHandler) {
+        if (!emit.isDone) {
+          emit(AuthState.error(errMessage: errorHandler));
+        }
+      },
+    );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    return super.close();
   }
 }

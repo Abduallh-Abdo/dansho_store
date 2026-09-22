@@ -31,5 +31,6 @@
     "yes": "Yes",
     "no": "No",
     "dark_mode": "Dark Mode",
-    "lang_code": "English"
+    "lang_code": "English",
+    "error":"An error has occurred, please try again"
 }
