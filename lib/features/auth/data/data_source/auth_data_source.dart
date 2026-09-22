@@ -4,6 +4,8 @@ import 'package:dansho_store/core/service/graphql/api_service.dart';
 import 'package:dansho_store/core/service/graphql/graphql_queries/auth/auth_queries.dart';
 import 'package:dansho_store/features/auth/data/models/login_request_body.dart';
 import 'package:dansho_store/features/auth/data/models/login_response.dart';
+import 'package:dansho_store/features/auth/data/models/signup_request_body.dart';
+import 'package:dansho_store/features/auth/data/models/signup_response.dart';
 import 'package:dansho_store/features/auth/data/models/user_role_response.dart';
 import 'package:dio/dio.dart';
 
@@ -27,6 +29,14 @@ class AuthDataSource {
     final client = ApiService(dio);
     final reponse = await client.userRole();
     log('User Role Response: ${reponse.userRole}');
+    return reponse;
+  }
+
+  // Signup
+  Future<SignupRepsonse> sginup({required SignupRequestBody body}) async {
+    final reponse = await _apiService.signup(
+      AuthQueries().signupMapQuery(body: body),
+    );
     return reponse;
   }
 }

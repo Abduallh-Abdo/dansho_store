@@ -1,4 +1,5 @@
 import 'package:dansho_store/features/auth/data/models/login_request_body.dart';
+import 'package:dansho_store/features/auth/data/models/signup_request_body.dart';
 
 class AuthQueries {
   factory AuthQueries() => _instance;
@@ -17,6 +18,41 @@ class AuthQueries {
       }
     ''',
       'variables': {'email': body.email, 'password': body.password},
+    };
+  }
+
+  Map<String, dynamic> signupMapQuery({required SignupRequestBody body}) {
+    return {
+      'query': r'''
+      mutation Signup(
+        $name: String!
+        $email: String!
+        $password: String!
+        $avatar: String!
+      ) {
+        addUser(
+          data: {
+            name: $name
+            email: $email
+            password: $password
+            avatar: $avatar
+            role: customer
+          }
+        ) {
+          id
+          email
+          name
+          role
+          avatar
+        }
+      }
+    ''',
+      'variables': {
+        'name': body.name,
+        'email': body.email,
+        'password': body.password,
+        'avatar': body.avatar,
+      },
     };
   }
 }

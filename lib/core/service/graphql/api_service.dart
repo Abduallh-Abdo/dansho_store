@@ -1,5 +1,6 @@
 import 'package:dansho_store/core/app/upload_image/models/upload_image_response.dart';
 import 'package:dansho_store/features/auth/data/models/login_response.dart';
+import 'package:dansho_store/features/auth/data/models/signup_response.dart';
 import 'package:dansho_store/features/auth/data/models/user_role_response.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -21,4 +22,7 @@ abstract class ApiService {
 
   @POST('/api/v1/files/upload')
   Future<UploadImageResponse> uploadImage(@Body() FormData file);
+
+  @POST(graphql)
+  Future<SignupRepsonse> signup(@Body() Map<String, dynamic> mutation);
 }
