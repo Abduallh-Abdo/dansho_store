@@ -19,6 +19,6 @@ abstract class ApiService {
   @GET('api/v1/auth/profile')
   Future<UserRoleResponse> userRole();
 
-  @POST('/api/v1/file/upload')
+  @POST('/api/v1/files/upload')
   Future<UploadImageResponse> uploadImage(@Body() FormData file);
 }

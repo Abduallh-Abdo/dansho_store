@@ -87,7 +87,7 @@ class _ApiService implements ApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/file/upload',
+            '/api/v1/files/upload',
             queryParameters: queryParameters,
             data: _data,
           )
