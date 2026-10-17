@@ -28,6 +28,7 @@ class ImagePickerUtils {
         log('Image Picker Error: $e');
       }
     }
+    return null;
   }
 
   Future<void> _showAlertPermissionsDialog() {

@@ -2,7 +2,6 @@ import 'package:dansho_store/core/common/animations/animate_do.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
-import 'package:dansho_store/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

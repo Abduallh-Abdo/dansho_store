@@ -1,6 +1,5 @@
 import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/service/graphql/api_result.dart';
-import 'package:dansho_store/core/utils/app_strings.dart';
 import 'package:dansho_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:dansho_store/features/auth/data/models/login_request_body.dart';
 import 'package:dansho_store/features/auth/data/models/login_response.dart';
