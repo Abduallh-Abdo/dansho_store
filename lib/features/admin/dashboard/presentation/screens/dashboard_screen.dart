@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AdminScreen extends StatelessWidget {
+class DashboardScreen extends StatelessWidget {
   const new({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Admin Screen')));
+    return const Placeholder();
   }
 }
