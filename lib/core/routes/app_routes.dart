@@ -2,7 +2,7 @@ import 'package:dansho_store/core/app/upload_image/cubit/upload_image_cubit.dart
 import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/routes/base_routes.dart';
 import 'package:dansho_store/core/routes/under_build_screen.dart';
-import 'package:dansho_store/features/admin/presentation/screens/admin_screen.dart';
+import 'package:dansho_store/features/admin/home_admin/presentation/screens/home_admin_screen.dart';
 import 'package:dansho_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dansho_store/features/auth/presentation/screens/login_screen.dart';
 import 'package:dansho_store/features/auth/presentation/screens/signup_screen.dart';
@@ -41,7 +41,7 @@ class AppRoutes {
           ),
         );
       case Routes.admin:
-        return BaseRoute(page: const AdminScreen());
+        return BaseRoute(page: const HomeAdminScreen());
       case Routes.customer:
         return BaseRoute(page: const CustomerScreen());
 
