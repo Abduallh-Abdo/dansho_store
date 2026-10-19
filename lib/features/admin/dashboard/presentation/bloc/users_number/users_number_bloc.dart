@@ -20,6 +20,8 @@ class UsersNumberBloc extends Bloc<UsersNumberEvent, UsersNumberState> {
     UsersNumberEvent event,
     Emitter<UsersNumberState> emit,
   ) async {
+    emit(const UsersNumberState.loading());
+
     final result = await dashboardRepo.numberOfUsers();
     result.when(
       success: (data) =>
