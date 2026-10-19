@@ -1,0 +1,10 @@
+part of 'categories_number_bloc.dart';
+
+@freezed
+class CategoriesNumberState with _$CategoriesNumberState {
+  const factory CategoriesNumberState.loading() = LoadingState;
+  const factory CategoriesNumberState.success({required String number}) =
+      SuccessState;
+  const factory CategoriesNumberState.error({required String error}) = ErrorState;
+}
+ 
