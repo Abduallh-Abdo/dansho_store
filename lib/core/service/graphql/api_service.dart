@@ -1,4 +1,7 @@
 import 'package:dansho_store/core/app/upload_image/models/upload_image_response.dart';
+import 'package:dansho_store/features/admin/dashboard/data/models/categories_number_responase.dart';
+import 'package:dansho_store/features/admin/dashboard/data/models/products_number_responase.dart';
+import 'package:dansho_store/features/admin/dashboard/data/models/users_number_responase.dart';
 import 'package:dansho_store/features/auth/data/models/login_response.dart';
 import 'package:dansho_store/features/auth/data/models/signup_response.dart';
 import 'package:dansho_store/features/auth/data/models/user_role_response.dart';
@@ -25,4 +28,14 @@ abstract class ApiService {
 
   @POST(graphql)
   Future<SignupRepsonse> signup(@Body() Map<String, dynamic> mutation);
+  @POST(graphql)
+  Future<UsersNumberResponse> numberOfUsers(@Body() Map<String, dynamic> query);
+  @POST(graphql)
+  Future<ProductsNumberResponse> numberOfProducts(
+    @Body() Map<String, dynamic> query,
+  );
+  @POST(graphql)
+  Future<CategoriesNumberResponse> numberOfCategories(
+    @Body() Map<String, dynamic> query,
+  );
 }
