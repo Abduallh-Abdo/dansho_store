@@ -21,6 +21,7 @@ class ProductsNumberBloc
     ProductsNumberEvent event,
     Emitter<ProductsNumberState> emit,
   ) async {
+    emit(const ProductsNumberState.loading());
     final result = await dashboardRepo.numberOfProducts();
     result.when(
       success: (data) =>

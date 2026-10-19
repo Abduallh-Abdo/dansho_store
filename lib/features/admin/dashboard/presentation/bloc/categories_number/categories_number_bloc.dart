@@ -21,6 +21,8 @@ class CategoriesNumberBloc
     CategoriesNumberEvent event,
     Emitter<CategoriesNumberState> emit,
   ) async {
+        emit(const CategoriesNumberState.loading());
+
     final result = await dashboardRepo.numberOfCategories();
     result.when(
       success: (data) =>
