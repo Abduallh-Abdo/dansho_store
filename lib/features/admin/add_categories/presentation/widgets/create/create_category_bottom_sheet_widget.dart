@@ -33,14 +33,18 @@ class _CreateCategoryBottomSheetWidgetState
       key: formKey,
       child: Column(
         children: [
-          TextApp(
-            text: 'Create Category',
-            theme: context.textStyle.copyWith(
-              fontSize: 20.sp,
-              fontWeight: FontWeightHelper.bold,
-              fontFamily: FontFamilyHelper.poppinsEnglish,
+          Center(
+            child: TextApp(
+              text: 'Create Category',
+              theme: context.textStyle.copyWith(
+                fontSize: 20.sp,
+                fontWeight: FontWeightHelper.bold,
+                fontFamily: FontFamilyHelper.poppinsEnglish,
+              ),
             ),
           ),
+          SizedBox(height: 20.h),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

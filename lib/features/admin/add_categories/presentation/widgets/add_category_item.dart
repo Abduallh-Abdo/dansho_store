@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dansho_store/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:dansho_store/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -62,7 +64,12 @@ class AddCategoryItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 20),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        await CustomBottomSheet.showModelBottomSheetContainer(
+                          context: context,
+                          widget: const UpdateCategoryBottomSheetWidget(),
+                        );
+                      },
                       child: Icon(Icons.edit, color: Colors.green, size: 25.sp),
                     ),
                   ],
