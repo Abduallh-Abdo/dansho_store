@@ -8,13 +8,13 @@ class AddCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AdminAppBar(
+    return const Scaffold(
+      appBar: AdminAppBar(
         backgroundColor: ColorsDark.mainColor,
         isMain: true,
         title: 'Categories',
       ),
-      body: const AddCategoriesBody(),
+      body: AddCategoriesBody(),
     );
   }
 }
