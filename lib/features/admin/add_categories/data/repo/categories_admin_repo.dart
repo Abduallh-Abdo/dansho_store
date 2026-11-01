@@ -5,12 +5,12 @@ import 'package:dansho_store/features/admin/add_categories/data/models/get_all_c
 import 'package:dansho_store/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class CategoryRepo {
+class CategoriesAdminRepo {
   new({required this._dataSource});
 
   final CategoryDataSoucre _dataSource;
 
-  Future<ApiResult<GetAllCategoriesResponse>> numberOfCategories() async {
+  Future<ApiResult<GetAllCategoriesResponse>> getAllAdminCategories() async {
     try {
       final response = await _dataSource.getAllCategories();
       return ApiResult.success(response);

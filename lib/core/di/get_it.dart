@@ -5,7 +5,7 @@ import 'package:dansho_store/core/app/upload_image/repos/upload_image_repo.dart'
 import 'package:dansho_store/core/service/graphql/api_service.dart';
 import 'package:dansho_store/core/service/graphql/dio_factory.dart';
 import 'package:dansho_store/features/admin/add_categories/data/data_source/category_data_soucre.dart';
-import 'package:dansho_store/features/admin/add_categories/data/repo/category_repo.dart';
+import 'package:dansho_store/features/admin/add_categories/data/repo/categories_admin_repo.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:dansho_store/features/admin/dashboard/data/repos/dashboard_repo.dart';
@@ -31,9 +31,11 @@ void _initCategoriesAdmin() {
   sl.registerLazySingleton<CategoryDataSoucre>(
     () => CategoryDataSoucre(apiService: sl()),
   );
-  sl.registerLazySingleton<CategoryRepo>(() => CategoryRepo(dataSource: sl()));
+  sl.registerLazySingleton<CategoriesAdminRepo>(
+    () => CategoriesAdminRepo(dataSource: sl()),
+  );
   sl.registerFactory<GetAllAdminCategoryBloc>(
-    () => GetAllAdminCategoryBloc(categoryRepo: sl()),
+    () => GetAllAdminCategoryBloc(categoryAdminRepo: sl()),
   );
 }
 
