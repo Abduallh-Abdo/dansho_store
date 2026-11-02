@@ -14,15 +14,17 @@ class GetAllAdminCategoryBloc
     extends Bloc<GetAllAdminCategoryEvent, GetAllAdminCategoryState> {
   GetAllAdminCategoryBloc({required this.categoryAdminRepo})
     : super(GetAllAdminCategoryState.loading()) {
-    on<GetAllAdminCategoryEvent>(_getAllAdminCategories);
+    on<FetchAdminCategoriesEvent>(_getAllAdminCategories);
   }
   final CategoriesAdminRepo categoryAdminRepo;
 
   FutureOr<void> _getAllAdminCategories(
-    GetAllAdminCategoryEvent event,
+    FetchAdminCategoriesEvent event,
     Emitter<GetAllAdminCategoryState> emit,
   ) async {
-    emit(const GetAllAdminCategoryState.loading());
+    if (event.isNotLoading) {
+      emit(const GetAllAdminCategoryState.loading());
+    }
     final result = await categoryAdminRepo.getAllAdminCategories();
 
     result.when(

@@ -56,11 +56,11 @@ extension GetAllAdminCategoryEventPatterns on GetAllAdminCategoryEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( GetAllCategoriesEvent value)?  getAllCategories,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( FetchAdminCategoriesEvent value)?  getAllCategories,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case GetAllCategoriesEvent() when getAllCategories != null:
+return started(_that);case FetchAdminCategoriesEvent() when getAllCategories != null:
 return getAllCategories(_that);case _:
   return orElse();
 
@@ -79,11 +79,11 @@ return getAllCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( GetAllCategoriesEvent value)  getAllCategories,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( FetchAdminCategoriesEvent value)  getAllCategories,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case GetAllCategoriesEvent():
+return started(_that);case FetchAdminCategoriesEvent():
 return getAllCategories(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -101,11 +101,11 @@ return getAllCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( GetAllCategoriesEvent value)?  getAllCategories,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( FetchAdminCategoriesEvent value)?  getAllCategories,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case GetAllCategoriesEvent() when getAllCategories != null:
+return started(_that);case FetchAdminCategoriesEvent() when getAllCategories != null:
 return getAllCategories(_that);case _:
   return null;
 
@@ -123,11 +123,11 @@ return getAllCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllCategories,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( bool isNotLoading)?  getAllCategories,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case GetAllCategoriesEvent() when getAllCategories != null:
-return getAllCategories();case _:
+return started();case FetchAdminCategoriesEvent() when getAllCategories != null:
+return getAllCategories(_that.isNotLoading);case _:
   return orElse();
 
 }
@@ -145,11 +145,11 @@ return getAllCategories();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllCategories,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( bool isNotLoading)  getAllCategories,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case GetAllCategoriesEvent():
-return getAllCategories();case _:
+return started();case FetchAdminCategoriesEvent():
+return getAllCategories(_that.isNotLoading);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -166,11 +166,11 @@ return getAllCategories();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllCategories,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( bool isNotLoading)?  getAllCategories,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case GetAllCategoriesEvent() when getAllCategories != null:
-return getAllCategories();case _:
+return started();case FetchAdminCategoriesEvent() when getAllCategories != null:
+return getAllCategories(_that.isNotLoading);case _:
   return null;
 
 }
@@ -213,34 +213,70 @@ String toString() {
 /// @nodoc
 
 
-class GetAllCategoriesEvent implements GetAllAdminCategoryEvent {
-  const GetAllCategoriesEvent();
+class FetchAdminCategoriesEvent implements GetAllAdminCategoryEvent {
+  const FetchAdminCategoriesEvent({required this.isNotLoading});
   
 
+ final  bool isNotLoading;
 
-
+/// Create a copy of GetAllAdminCategoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GetAllCategoriesEventCopyWith<FetchAdminCategoriesEvent> get copyWith => _$GetAllCategoriesEventCopyWithImpl<FetchAdminCategoriesEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is GetAllCategoriesEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchAdminCategoriesEvent&&(identical(other.isNotLoading, isNotLoading) || other.isNotLoading == isNotLoading));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+    return Object.hash(runtimeType,isNotLoading);
+}
 
 @override
 String toString() {
-    return 'GetAllAdminCategoryEvent.getAllCategories()';
+    return 'GetAllAdminCategoryEvent.getAllCategories(isNotLoading: $isNotLoading)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $GetAllCategoriesEventCopyWith<$Res> implements $GetAllAdminCategoryEventCopyWith<$Res> {
+  factory $GetAllCategoriesEventCopyWith(FetchAdminCategoriesEvent value, $Res Function(FetchAdminCategoriesEvent) _then) = _$GetAllCategoriesEventCopyWithImpl;
+@useResult
+$Res call({
+ bool isNotLoading
+});
 
 
+
+
+}
+/// @nodoc
+class _$GetAllCategoriesEventCopyWithImpl<$Res>
+    implements $GetAllCategoriesEventCopyWith<$Res> {
+  _$GetAllCategoriesEventCopyWithImpl(this._self, this._then);
+
+  final FetchAdminCategoriesEvent _self;
+  final $Res Function(FetchAdminCategoriesEvent) _then;
+
+/// Create a copy of GetAllAdminCategoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? isNotLoading = null,}) {
+  return _then(FetchAdminCategoriesEvent(
+isNotLoading: null == isNotLoading ? _self.isNotLoading : isNotLoading // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$GetAllAdminCategoryState {

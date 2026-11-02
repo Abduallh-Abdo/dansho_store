@@ -123,11 +123,11 @@ return createCategory(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  createCategory,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( CreateCategoryRequestBody body)?  createCategory,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case CreateNewCategoryEvent() when createCategory != null:
-return createCategory();case _:
+return createCategory(_that.body);case _:
   return orElse();
 
 }
@@ -145,11 +145,11 @@ return createCategory();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  createCategory,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( CreateCategoryRequestBody body)  createCategory,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case CreateNewCategoryEvent():
-return createCategory();case _:
+return createCategory(_that.body);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -166,11 +166,11 @@ return createCategory();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  createCategory,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( CreateCategoryRequestBody body)?  createCategory,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case CreateNewCategoryEvent() when createCategory != null:
-return createCategory();case _:
+return createCategory(_that.body);case _:
   return null;
 
 }
@@ -214,33 +214,69 @@ String toString() {
 
 
 class CreateNewCategoryEvent implements CreateCategoryEvent {
-  const CreateNewCategoryEvent();
+  const CreateNewCategoryEvent({required this.body});
   
 
+ final  CreateCategoryRequestBody body;
 
-
+/// Create a copy of CreateCategoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CreateNewCategoryEventCopyWith<CreateNewCategoryEvent> get copyWith => _$CreateNewCategoryEventCopyWithImpl<CreateNewCategoryEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateNewCategoryEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateNewCategoryEvent&&(identical(other.body, body) || other.body == body));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode {
+    return Object.hash(runtimeType,body);
+}
 
 @override
 String toString() {
-    return 'CreateCategoryEvent.createCategory()';
+    return 'CreateCategoryEvent.createCategory(body: $body)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $CreateNewCategoryEventCopyWith<$Res> implements $CreateCategoryEventCopyWith<$Res> {
+  factory $CreateNewCategoryEventCopyWith(CreateNewCategoryEvent value, $Res Function(CreateNewCategoryEvent) _then) = _$CreateNewCategoryEventCopyWithImpl;
+@useResult
+$Res call({
+ CreateCategoryRequestBody body
+});
 
 
+
+
+}
+/// @nodoc
+class _$CreateNewCategoryEventCopyWithImpl<$Res>
+    implements $CreateNewCategoryEventCopyWith<$Res> {
+  _$CreateNewCategoryEventCopyWithImpl(this._self, this._then);
+
+  final CreateNewCategoryEvent _self;
+  final $Res Function(CreateNewCategoryEvent) _then;
+
+/// Create a copy of CreateCategoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? body = null,}) {
+  return _then(CreateNewCategoryEvent(
+body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
+as CreateCategoryRequestBody,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$CreateCategoryState {

@@ -14,9 +14,12 @@ class AddCategoriesScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              GetAllAdminCategoryBloc(categoryAdminRepo: sl())
-                ..add(const GetAllAdminCategoryEvent.getAllCategories()),
+          create: (context) => GetAllAdminCategoryBloc(categoryAdminRepo: sl())
+            ..add(
+              const GetAllAdminCategoryEvent.getAllCategories(
+                isNotLoading: true,
+              ),
+            ),
         ),
       ],
       child: const Scaffold(

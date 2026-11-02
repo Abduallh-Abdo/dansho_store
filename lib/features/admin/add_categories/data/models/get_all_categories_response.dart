@@ -13,7 +13,7 @@ class GetAllCategoriesResponse {
     if (data.categoriesList.isEmpty) {
       return [];
     } else {
-      return data.categoriesList;
+      return data.categoriesList.reversed.toList();
     }
   }
 }
