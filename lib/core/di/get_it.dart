@@ -6,7 +6,8 @@ import 'package:dansho_store/core/service/graphql/api_service.dart';
 import 'package:dansho_store/core/service/graphql/dio_factory.dart';
 import 'package:dansho_store/features/admin/add_categories/data/data_source/category_data_soucre.dart';
 import 'package:dansho_store/features/admin/add_categories/data/repo/categories_admin_repo.dart';
-import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/create_category/create_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:dansho_store/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:dansho_store/features/admin/dashboard/presentation/bloc/categories_number/categories_number_bloc.dart';
@@ -36,6 +37,9 @@ void _initCategoriesAdmin() {
   );
   sl.registerFactory<GetAllAdminCategoryBloc>(
     () => GetAllAdminCategoryBloc(categoryAdminRepo: sl()),
+  );
+  sl.registerFactory<CreateCategoryBloc>(
+    () => CreateCategoryBloc(categoryAdminRepo: sl()),
   );
 }
 
