@@ -1,3 +1,5 @@
+import 'package:dansho_store/features/admin/add_categories/data/models/create_category_request_body.dart';
+
 class CategoryQueries {
   const CategoryQueries._();
 
@@ -16,6 +18,25 @@ class CategoryQueries {
           }
         }
       ''',
+    };
+  }
+
+  Map<String, dynamic> categoryMapQuery({
+    required CreateCategoryRequestBody body,
+  }) {
+    return {
+      'query': r'''
+       mutation Create($name: String!, $image: String!) {
+         addCategory(
+         data: {name: $name, image: $image}
+         ) {
+           name
+           id
+           image
+          }
+        }
+      ''',
+      'variables': {'name': body.name, 'image': body.image},
     };
   }
 }

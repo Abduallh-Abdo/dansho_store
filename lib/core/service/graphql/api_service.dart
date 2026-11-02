@@ -1,4 +1,5 @@
 import 'package:dansho_store/core/app/upload_image/models/upload_image_response.dart';
+import 'package:dansho_store/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:dansho_store/features/admin/add_categories/data/models/get_all_categories_response.dart';
 import 'package:dansho_store/features/admin/dashboard/data/models/categories_number_responase.dart';
 import 'package:dansho_store/features/admin/dashboard/data/models/products_number_responase.dart';
@@ -42,5 +43,10 @@ abstract class ApiService {
   @POST(graphql)
   Future<GetAllCategoriesResponse> getAllCategories(
     @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphql)
+  Future<CreateCategoryResponse> createCategory(
+    @Body() Map<String, dynamic> mutation,
   );
 }
