@@ -21,7 +21,7 @@ class CategoryQueries {
     };
   }
 
-  Map<String, dynamic> categoryMapQuery({
+  Map<String, dynamic> createMapQuery({
     required CreateCategoryRequestBody body,
   }) {
     return {
@@ -37,6 +37,17 @@ class CategoryQueries {
         }
       ''',
       'variables': {'name': body.name, 'image': body.image},
+    };
+  }
+
+  Map<String, dynamic> deleteMapQuery({required String categoryId}) {
+    return {
+      'query': r'''
+       mutation Delete($categoryId: ID!) {
+         deleteCategory(id: $categoryId)
+        }
+      ''',
+      'variables': {'categoryId': categoryId},
     };
   }
 }

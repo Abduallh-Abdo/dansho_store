@@ -35,4 +35,16 @@ class CategoriesAdminRepo {
       return ApiResult.failure(S.of(context).error);
     }
   }
+  //? Delete categories
+  Future<ApiResult<void>> deleteCategory({
+    required String categoryId,
+  }) async {
+    try {
+      final response = await _dataSource.deleteCategory(categoryId: categoryId);
+      return ApiResult.success(response);
+    } catch (e) {
+      final context = sl<GlobalKey<NavigatorState>>().currentState!.context;
+      return ApiResult.failure(S.of(context).error);
+    }
+  }
 }

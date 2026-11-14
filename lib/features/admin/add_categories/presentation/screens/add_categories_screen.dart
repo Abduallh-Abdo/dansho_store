@@ -1,6 +1,7 @@
 import 'package:dansho_store/core/common/widgets/admin_app_bar.dart';
 import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/styles/colors/colors_dark.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/delete_category/delete_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/refactors/add_categories_body.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ class AddCategoriesScreen extends StatelessWidget {
                 isNotLoading: true,
               ),
             ),
+        ),
+        BlocProvider(
+          create: (context) => sl<DeleteCategoryBloc>(),
         ),
       ],
       child: const Scaffold(

@@ -17,12 +17,19 @@ class CategoryDataSoucre {
   }
 
   //? Create Categories
-
   Future<CreateCategoryResponse> createCategory({
     required CreateCategoryRequestBody body,
   }) async {
     final response = await _apiService.createCategory(
-      CategoryQueries().categoryMapQuery(body: body),
+      CategoryQueries().createMapQuery(body: body),
+    );
+    return response;
+  }
+
+  //? Delete Categories
+  Future<void> deleteCategory({required String categoryId}) async {
+    final response = await _apiService.deleteCategory(
+      CategoryQueries().deleteMapQuery(categoryId: categoryId),
     );
     return response;
   }

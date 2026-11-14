@@ -223,7 +223,7 @@ class FetchAdminCategoriesEvent implements GetAllAdminCategoryEvent {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$GetAllCategoriesEventCopyWith<FetchAdminCategoriesEvent> get copyWith => _$GetAllCategoriesEventCopyWithImpl<FetchAdminCategoriesEvent>(this, _$identity);
+$FetchAdminCategoriesEventCopyWith<FetchAdminCategoriesEvent> get copyWith => _$FetchAdminCategoriesEventCopyWithImpl<FetchAdminCategoriesEvent>(this, _$identity);
 
 
 
@@ -247,8 +247,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $GetAllCategoriesEventCopyWith<$Res> implements $GetAllAdminCategoryEventCopyWith<$Res> {
-  factory $GetAllCategoriesEventCopyWith(FetchAdminCategoriesEvent value, $Res Function(FetchAdminCategoriesEvent) _then) = _$GetAllCategoriesEventCopyWithImpl;
+abstract mixin class $FetchAdminCategoriesEventCopyWith<$Res> implements $GetAllAdminCategoryEventCopyWith<$Res> {
+  factory $FetchAdminCategoriesEventCopyWith(FetchAdminCategoriesEvent value, $Res Function(FetchAdminCategoriesEvent) _then) = _$FetchAdminCategoriesEventCopyWithImpl;
 @useResult
 $Res call({
  bool isNotLoading
@@ -259,9 +259,9 @@ $Res call({
 
 }
 /// @nodoc
-class _$GetAllCategoriesEventCopyWithImpl<$Res>
-    implements $GetAllCategoriesEventCopyWith<$Res> {
-  _$GetAllCategoriesEventCopyWithImpl(this._self, this._then);
+class _$FetchAdminCategoriesEventCopyWithImpl<$Res>
+    implements $FetchAdminCategoriesEventCopyWith<$Res> {
+  _$FetchAdminCategoriesEventCopyWithImpl(this._self, this._then);
 
   final FetchAdminCategoriesEvent _self;
   final $Res Function(FetchAdminCategoriesEvent) _then;
