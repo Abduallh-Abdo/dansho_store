@@ -7,6 +7,7 @@ import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/update_category/update_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
@@ -16,12 +17,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddCategoryItem extends StatelessWidget {
   const AddCategoryItem({
-    required this.title,
+    required this.name,
     required this.image,
     required this.categoryId,
     super.key,
   });
-  final String title;
+  final String name;
   final String image;
   final String categoryId;
 
@@ -42,7 +43,7 @@ class AddCategoryItem extends StatelessWidget {
               children: [
                 const Spacer(),
                 TextApp(
-                  text: title,
+                  text: name,
                   theme: context.textStyle.copyWith(
                     color: Colors.white,
                     fontSize: 18.sp,
@@ -99,7 +100,15 @@ class AddCategoryItem extends StatelessWidget {
           BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
           BlocProvider(create: (context) => sl<UploadImageCubit>()),
         ],
-        child: const UpdateCategoryBottomSheetWidget(),
+
+        child: UpdateCategoryBottomSheetWidget(
+          categoryId: categoryId,
+          imageUrl: image,
+          categoryName: name,
+        ),
+      ),
+      whenComplete: () => context.read<GetAllAdminCategoryBloc>().add(
+        const GetAllAdminCategoryEvent.getAllCategories(isNotLoading: false),
       ),
     );
   }

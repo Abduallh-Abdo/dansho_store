@@ -62,7 +62,7 @@ class AddCategoriesBody extends StatelessWidget {
                                       SizedBox(height: 15.h),
                                   itemBuilder: (context, index) =>
                                       AddCategoryItem(
-                                        title:
+                                        name:
                                             data
                                                 .getAllCategoriesList[index]
                                                 .name ??
