@@ -5,6 +5,7 @@ import 'package:dansho_store/core/common/widgets/text_app.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,10 +59,7 @@ class AddCategoryItem extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(Icons.delete, color: Colors.red, size: 25.sp),
-                    ),
+                     DeleteCategoryWidget(categoryId:categoryId),
                     const SizedBox(width: 20),
                     InkWell(
                       onTap: () async {
@@ -92,3 +90,4 @@ class AddCategoryItem extends StatelessWidget {
     );
   }
 }
+

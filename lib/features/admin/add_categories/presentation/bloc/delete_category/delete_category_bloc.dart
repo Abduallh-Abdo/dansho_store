@@ -20,7 +20,7 @@ class DeleteCategoryBloc
     RemoveCategoryEvent event,
     Emitter<DeleteCategoryState> emit,
   ) async {
-    emit(const DeleteCategoryState.loading());
+    emit( DeleteCategoryState.loading(categoryId: event.categoryId));
     final result = await categoryAdminRepo.deleteCategory(
       categoryId: event.categoryId,
     );

@@ -22,9 +22,7 @@ class AddCategoriesScreen extends StatelessWidget {
               ),
             ),
         ),
-        BlocProvider(
-          create: (context) => sl<DeleteCategoryBloc>(),
-        ),
+        BlocProvider(create: (context) => sl<DeleteCategoryBloc>()),
       ],
       child: const Scaffold(
         appBar: AdminAppBar(
