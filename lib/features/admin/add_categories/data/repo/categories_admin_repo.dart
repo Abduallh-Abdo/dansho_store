@@ -4,6 +4,7 @@ import 'package:dansho_store/features/admin/add_categories/data/data_source/cate
 import 'package:dansho_store/features/admin/add_categories/data/models/create_category_request_body.dart';
 import 'package:dansho_store/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:dansho_store/features/admin/add_categories/data/models/get_all_categories_response.dart';
+import 'package:dansho_store/features/admin/add_categories/data/models/update_category_request_body.dart';
 import 'package:dansho_store/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -35,12 +36,24 @@ class CategoriesAdminRepo {
       return ApiResult.failure(S.of(context).error);
     }
   }
+
   //? Delete categories
-  Future<ApiResult<void>> deleteCategory({
-    required String categoryId,
-  }) async {
+  Future<ApiResult<void>> deleteCategory({required String categoryId}) async {
     try {
       final response = await _dataSource.deleteCategory(categoryId: categoryId);
+      return ApiResult.success(response);
+    } catch (e) {
+      final context = sl<GlobalKey<NavigatorState>>().currentState!.context;
+      return ApiResult.failure(S.of(context).error);
+    }
+  }
+
+  //? Update categories
+  Future<ApiResult<void>> updateCategory({
+    required UpdateCategoryRequestBody body,
+  }) async {
+    try {
+      final response = await _dataSource.updateCategory(body: body);
       return ApiResult.success(response);
     } catch (e) {
       final context = sl<GlobalKey<NavigatorState>>().currentState!.context;

@@ -9,6 +9,7 @@ import 'package:dansho_store/features/admin/add_categories/data/repo/categories_
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/create_category/create_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/delete_category/delete_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/update_category/update_category_bloc.dart';
 import 'package:dansho_store/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:dansho_store/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:dansho_store/features/admin/dashboard/presentation/bloc/categories_number/categories_number_bloc.dart';
@@ -44,6 +45,9 @@ void _initCategoriesAdmin() {
   );
   sl.registerFactory<DeleteCategoryBloc>(
     () => DeleteCategoryBloc(categoryAdminRepo: sl()),
+  );
+  sl.registerFactory<UpdateCategoryBloc>(
+    () => UpdateCategoryBloc(categoriesAdminRepo: sl()),
   );
 }
 

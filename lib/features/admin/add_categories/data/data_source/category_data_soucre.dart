@@ -3,6 +3,7 @@ import 'package:dansho_store/core/service/graphql/graphql_queries/admin/category
 import 'package:dansho_store/features/admin/add_categories/data/models/create_category_request_body.dart';
 import 'package:dansho_store/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:dansho_store/features/admin/add_categories/data/models/get_all_categories_response.dart';
+import 'package:dansho_store/features/admin/add_categories/data/models/update_category_request_body.dart';
 
 class CategoryDataSoucre {
   const new({required this._apiService});
@@ -30,6 +31,14 @@ class CategoryDataSoucre {
   Future<void> deleteCategory({required String categoryId}) async {
     final response = await _apiService.deleteCategory(
       CategoryQueries().deleteMapQuery(categoryId: categoryId),
+    );
+    return response;
+  }
+
+  //? Update Categories
+  Future<void> updateCategory({required UpdateCategoryRequestBody body}) async {
+    final response = await _apiService.updateCategory(
+      CategoryQueries().updateMapQuery(body: body),
     );
     return response;
   }
