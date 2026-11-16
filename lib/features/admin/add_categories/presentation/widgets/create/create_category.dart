@@ -1,12 +1,17 @@
+import 'package:dansho_store/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:dansho_store/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:dansho_store/core/common/widgets/custom_button.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
+import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/colors/colors_dark.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/create_category/create_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/widgets/create/create_category_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreateCategory extends StatelessWidget {
@@ -30,7 +35,21 @@ class CreateCategory extends StatelessWidget {
           onPressed: () async {
             await CustomBottomSheet.showModelBottomSheetContainer(
               context: context,
-              widget: const CreateCategoryBottomSheetWidget(),
+              widget: MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (context) => sl<CreateCategoryBloc>()),
+                  BlocProvider(create: (context) => sl<UploadImageCubit>()),
+                ],
+
+                child: const CreateCategoryBottomSheetWidget(),
+              ),
+              whenComplete: () {
+                context.read<GetAllAdminCategoryBloc>().add(
+                  const GetAllAdminCategoryEvent.getAllCategories(
+                    isNotLoading: false,
+                  ),
+                );
+              },
             );
           },
           text: 'Add',

@@ -1,22 +1,28 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dansho_store/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:dansho_store/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:dansho_store/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
+import 'package:dansho_store/core/di/get_it.dart';
 import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/bloc/update_category/update_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddCategoryItem extends StatelessWidget {
   const AddCategoryItem({
-    required this.title,
+    required this.name,
     required this.image,
     required this.categoryId,
     super.key,
   });
-  final String title;
+  final String name;
   final String image;
   final String categoryId;
 
@@ -37,7 +43,7 @@ class AddCategoryItem extends StatelessWidget {
               children: [
                 const Spacer(),
                 TextApp(
-                  text: title,
+                  text: name,
                   theme: context.textStyle.copyWith(
                     color: Colors.white,
                     fontSize: 18.sp,
@@ -58,17 +64,11 @@ class AddCategoryItem extends StatelessWidget {
                 const Spacer(),
                 Row(
                   children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(Icons.delete, color: Colors.red, size: 25.sp),
-                    ),
+                    DeleteCategoryWidget(categoryId: categoryId),
                     const SizedBox(width: 20),
                     InkWell(
                       onTap: () async {
-                        await CustomBottomSheet.showModelBottomSheetContainer(
-                          context: context,
-                          widget: const UpdateCategoryBottomSheetWidget(),
-                        );
+                        await _updateCategoryBottomSheet(context);
                       },
                       child: Icon(Icons.edit, color: Colors.green, size: 25.sp),
                     ),
@@ -88,6 +88,27 @@ class AddCategoryItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Future<void> _updateCategoryBottomSheet(BuildContext context) async {
+    await CustomBottomSheet.showModelBottomSheetContainer(
+      context: context,
+      widget: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
+          BlocProvider(create: (context) => sl<UploadImageCubit>()),
+        ],
+
+        child: UpdateCategoryBottomSheetWidget(
+          categoryId: categoryId,
+          imageUrl: image,
+          categoryName: name,
+        ),
+      ),
+      whenComplete: () => context.read<GetAllAdminCategoryBloc>().add(
+        const GetAllAdminCategoryEvent.getAllCategories(isNotLoading: false),
       ),
     );
   }
