@@ -33,7 +33,7 @@ GetAllProductReponseModel _$GetAllProductReponseModelFromJson(
 ) => GetAllProductReponseModel(
   id: json['id'] as String?,
   title: json['title'] as String?,
-  price: (json['price'] as num?)?.toInt(),
+  price: (json['price'] as num?)?.toDouble(),
   description: json['description'] as String?,
   images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
   category: json['category'] == null

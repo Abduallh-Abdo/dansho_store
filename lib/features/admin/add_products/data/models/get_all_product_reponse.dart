@@ -43,7 +43,7 @@ class GetAllProductReponseModel {
 
   final String? id;
   final String? title;
-  final int? price;
+  final double? price;
   final String? description;
   final List<String> images;
   final CategoryProductModel? category;
