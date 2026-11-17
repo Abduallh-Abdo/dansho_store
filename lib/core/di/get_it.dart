@@ -10,6 +10,9 @@ import 'package:dansho_store/features/admin/add_categories/presentation/bloc/cre
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/delete_category/delete_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/get_all_admin_category/get_all_admin_category_bloc.dart';
 import 'package:dansho_store/features/admin/add_categories/presentation/bloc/update_category/update_category_bloc.dart';
+import 'package:dansho_store/features/admin/add_products/data/data_source/product_data_soucre.dart';
+import 'package:dansho_store/features/admin/add_products/data/repo/product_admin_repo.dart';
+import 'package:dansho_store/features/admin/add_products/presentation/bloc/get_all_admin_products/get_all_admin_products_bloc.dart';
 import 'package:dansho_store/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:dansho_store/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:dansho_store/features/admin/dashboard/presentation/bloc/categories_number/categories_number_bloc.dart';
@@ -28,6 +31,7 @@ Future<void> initGetIt() async {
   _initAuth();
   _initDashboard();
   _initCategoriesAdmin();
+  _initProductAdmin();
 }
 
 void _initCategoriesAdmin() {
@@ -48,6 +52,18 @@ void _initCategoriesAdmin() {
   );
   sl.registerFactory<UpdateCategoryBloc>(
     () => UpdateCategoryBloc(categoriesAdminRepo: sl()),
+  );
+}
+
+void _initProductAdmin() {
+  sl.registerLazySingleton<ProductDataSoucre>(
+    () => ProductDataSoucre(apiService: sl()),
+  );
+  sl.registerLazySingleton<ProductAdminRepo>(
+    () => ProductAdminRepo(dataSource: sl()),
+  );
+  sl.registerFactory<GetAllAdminProductsBloc>(
+    () => GetAllAdminProductsBloc(productAdminRepo: sl()),
   );
 }
 

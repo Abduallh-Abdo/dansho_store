@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dansho_store/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:dansho_store/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
+import 'package:dansho_store/core/extensions/string_extention.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
 import 'package:dansho_store/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
@@ -54,7 +55,7 @@ class ProductAdminItem extends StatelessWidget {
               child: CachedNetworkImage(
                 width: 120.w,
                 height: 200.h,
-                imageUrl: imageUrl,
+                imageUrl: imageUrl.imageProductFormate(),
                 errorWidget: (context, url, error) =>
                     const Icon(Icons.error, color: Colors.red, size: 70),
               ),
