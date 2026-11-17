@@ -5,9 +5,8 @@ import 'package:dansho_store/core/extensions/context_ext.dart';
 import 'package:dansho_store/core/styles/colors/colors_dark.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
-import 'package:dansho_store/features/admin/add_categories/presentation/widgets/create/create_category_bottom_sheet_widget.dart';
+import 'package:dansho_store/features/admin/add_products/presentation/widgets/create/create_product_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CreateProduct extends StatelessWidget {
@@ -31,21 +30,7 @@ class CreateProduct extends StatelessWidget {
           onPressed: () async {
             await CustomBottomSheet.showModelBottomSheetContainer(
               context: context,
-              widget: MultiBlocProvider(
-                providers: [
-                  // BlocProvider(create: (context) => sl<CreateCategoryBloc>()),
-                  // BlocProvider(create: (context) => sl<UploadImageCubit>()),
-                ],
-
-                child: const CreateCategoryBottomSheetWidget(),
-              ),
-              // whenComplete: () {
-              //   context.read<GetAllAdminCategoryBloc>().add(
-              //     const GetAllAdminCategoryEvent.getAllCategories(
-              //       isNotLoading: false,
-              //     ),
-              //   );
-            //   },
+              widget: const CreateProductBottomSheet(),
             );
           },
           text: 'Add',

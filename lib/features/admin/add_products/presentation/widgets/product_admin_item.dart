@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dansho_store/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:dansho_store/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:dansho_store/core/common/widgets/text_app.dart';
 import 'package:dansho_store/core/styles/fonts/font_family_helper.dart';
 import 'package:dansho_store/core/styles/fonts/font_weight_helper.dart';
+import 'package:dansho_store/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductAdminItem extends StatelessWidget {
@@ -31,12 +32,19 @@ class ProductAdminItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              //? Delete Button
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.delete, color: Colors.red, size: 25),
               ),
+              //? Edit Button
               IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await CustomBottomSheet.showModelBottomSheetContainer(
+                    context: context,
+                    widget: const UpdateProductBottomSheet(),
+                  );
+                },
                 icon: const Icon(Icons.edit, color: Colors.green, size: 25),
               ),
             ],
